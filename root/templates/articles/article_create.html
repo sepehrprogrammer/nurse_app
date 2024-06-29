@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	 Write message
+{% endblock %}
+
+{% block content %}
+	<h3>new Message </h3>
+    <hr>
+    <form method="post" action="">
+     {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn-primary">save</button>
+    </form>
+{% endblock %}

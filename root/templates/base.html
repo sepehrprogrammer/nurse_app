@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Nurse Help app {% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="">My Website</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-items active"> <a class="nav-link">Hi {{ user }} <span class="sr-only">(current)</span> </a> </li>
+                        <li class="nav-items active">
+                            <form method="POST" action="{% url 'logout' %}">
+                                    {% csrf_token %}
+                                    <button type="submit" >Logout</button>
+                            </form></li>
+                    {% else %}
+                        <li><a class="nav-link" href="{% url 'login' %}">LogIn</a> </li>
+                        <li><a class="nav-link" href="{% url 'signup' %}">Register</a></li>
+                        <li><a class="nav-link" href="{% url 'nurse_signup' %}">Register Nurse</a> </li>
+                        <li><a class="nav-link" href="{% url 'patient_signup' %}">Register Patient</a> </li>
+                    {% endif %} 
+                
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'article_list' %}">Messages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'article_create' %}">New Message</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+</html>
+

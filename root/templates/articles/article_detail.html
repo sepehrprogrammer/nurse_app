@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Message Detail
+{% endblock %}
+
+{% block content %}
+	<h1>{{ article.title }}</h1>
+    <hr>
+    <h4>{{ article.author }}  at  {{ article.pub_date }}  </h4>
+    <p>
+       <b>{{ article.body }}</b>
+    </p>
+    <hr>
+    <ul>
+      {% for comment in article.comments.all %}
+          <li><b> {{ comment.writer }}</b> <b>:</b>  {{ comment.comment }}
+        </li>
+      {% endfor %}
+    </ul>
+    {% if user.is_authenticated %}
+    	  <form action="" method="post">
+           {% csrf_token %}
+            {{ form.as_p }}
+          <input type="submit" class="btn-primary" value="comment">
+    </form>
+    {% endif %} 
+    
+    {% if user.is_authenticated and article.author == user %}
+    <a href="{% url 'article_update' article.id %}">Edit</a> | <a href="{% url 'article_delete' article.id %}">Delete</a>
+    {% endif %} 
+          
+    
+{% endblock %}
