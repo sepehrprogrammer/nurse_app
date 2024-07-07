@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}
+	 communications list
+{% endblock %}
+
+
+{% block content %}
+    <h3> Communications list</h3>
+    <hr>
+    <ul>
+      {% for object in object_list %}
+          <li>
+          {{ object.patient.name }} | {{ object.status }}
+           <a href="{% url 'communication_detail' object.id  %}">info</a>
+          </li>
+
+      {% empty %}
+          <li>No communications available</li>
+
+      {% endfor %}
+
+    </ul>
+
+{% endblock %}

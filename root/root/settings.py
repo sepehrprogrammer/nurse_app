@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'patients',
     'pages',
     'articles.apps.ArticlesConfig',
+    'assign',
 
 ]
 

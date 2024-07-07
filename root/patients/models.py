@@ -22,4 +22,3 @@ class Patient(CustomUser):
 
 
 
-

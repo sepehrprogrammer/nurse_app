@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    communication details
+{% endblock %}
+
+{% block content %}
+	<h3>Communication Details</h3>
+
+<p>Nurse: {{ nurse.name }}</p>
+<p>Patient: {{ patient.name }}</p>
+<p>Status: {{ object.status }}</p>
+
+<h4>Messages</h4>
+<ul>
+    {% for message in object.messages.all %}
+        <li>{{ message.text }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
